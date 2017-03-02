@@ -1,0 +1,49 @@
+
+// Bootstrap Variables
+$icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
+
+// Import Bootstrap
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+.ing{
+  font-size: 25px;
+}
+.num-servings{
+  width: 35px;
+  font-size: 22px;
+}
+.adjust{
+  margin-left: 35px;
+  font-size: 22px;
+}
+.check{
+  width: 55px;
+  height: 65px;
+}
+.heading{
+  font-style: italic;
+  font-size: 22px;
+}
+.help{
+  float: right;
+  font-size: 22px;
+}
+.check-box{
+  width: 15px;
+  height: 15px;
+  border-radius: 4px;
+}
+.amount{
+  font-size: 18px;
+
+}
