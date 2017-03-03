@@ -5,7 +5,7 @@ var Backbone = require('backbone');
 
 
 
-require('./utilities');
+
 require('./router');
 
 
