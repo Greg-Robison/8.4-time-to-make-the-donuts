@@ -1,16 +1,13 @@
 var $ = require('jquery');
 var Backbone = require('backbone');
 
+var parse = require('../setup.js');
+
 var User = Backbone.Model.extend({
-idAttribute: 'objectId'
-});
-
-var UserCollection = Backbone.Collection.extend({
-  model: User,
-  urlRoot: function(){
-    return parse.BASE_API_URL + '/users';
-  }
-
+idAttribute: 'objectId',
+urlRoot: function(){
+  return parse.BASE_API_URL + '/users';
+}
 },{
   login: function(cridentials, callback){
     var url = parse.BASE_API_URL + '/login?' + $.param(cridentials);

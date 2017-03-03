@@ -8,7 +8,14 @@ var ConversionContainer = require('./components/conversion.jsx').ConversionConta
 
 var AppRouter = Backbone.Router.extend({
   routes:{
-    "": 'index'
+    "": 'index',
+    'recipe/': 'convert'
+  },
+  convert: function(){
+    ReactDOM.render(
+      React.createElement(ConversionContainer),
+      document.getElementById('app')
+    )
   },
   index: function(){
     ReactDOM.render(
