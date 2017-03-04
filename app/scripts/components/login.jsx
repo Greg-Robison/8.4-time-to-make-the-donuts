@@ -12,7 +12,7 @@ class LoginContainer extends React.Component{
     this.login = this.login.bind(this);
   }
   login(creds){
-    user.login(creds, function(user){
+    User.login(creds, function(){
       Backbone.history.navigate('recipe/', {trigger: true});
     })
   }
@@ -31,16 +31,12 @@ class LoginContainer extends React.Component{
       <div className="container">
         <div className="row">
           <div className="col-md-5">
-
-              <h1>Allready a member Log In</h1>
+              <h1 className="welcome">Allready a member Log In</h1>
               <LoginForm action={this.login} submitBtn="Login" />
-
           </div>
           <div className="col-md-5">
-
-              <h1>Sign Up</h1>
+              <h1 className="welcome">Sign Up</h1>
               <SignUpForm action={this.createAccount} submitBtn="Create Account"/>
-
           </div>
         </div>
       </div>
@@ -90,7 +86,7 @@ class LoginForm extends React.Component {
   }
 }
 
-class SignUpForm extends LoginForm{
+class SignUpForm extends LoginForm {
 
 }
 

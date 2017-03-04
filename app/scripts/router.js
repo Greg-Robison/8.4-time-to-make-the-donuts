@@ -11,6 +11,11 @@ var AppRouter = Backbone.Router.extend({
     "": 'index',
     'recipe/': 'convert'
   },
+  initialize: function(){
+    parse.setup({
+      BASE_API_URL: 'https://tiny-parse-server.herokuapp.com'
+    });
+  },
   convert: function(){
     ReactDOM.render(
       React.createElement(ConversionContainer),

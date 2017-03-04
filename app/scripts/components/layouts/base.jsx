@@ -17,7 +17,7 @@ return (
 }
 function Header(props){
   return(
-    <h1>Welcome to Greg's Recipe Managenment App</h1>
+    <h1 className="welcome text-center">Welcome to Greg's Recipe Managenment App</h1>
   );
 }
 function AnonHeader(props){

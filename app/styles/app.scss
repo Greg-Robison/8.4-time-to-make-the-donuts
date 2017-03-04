@@ -11,6 +11,15 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 *::after {
   box-sizing: border-box;
 }
+body{
+  background: url('../images/bake.jpg');
+
+}
+.welcome{
+  color: aqua;
+  font-size: 35px;
+  font-weight: bolder;
+}
 
 img {
   max-width: 100%;
@@ -38,6 +47,9 @@ img {
   float: right;
   font-size: 22px;
 }
+.well{
+  background-color: #E9D6A7;
+}
 .check-box{
   width: 15px;
   height: 15px;
@@ -45,5 +57,9 @@ img {
 }
 .amount{
   font-size: 18px;
-
+}
+.btn{
+  background-color: aqua;
+  color: black;
+  border-style: none;
 }

@@ -5,7 +5,7 @@ var BaseLayout = require('./base.jsx').BaseLayout;
 function LoginLayout(props){
   return (
     <BaseLayout {...props}>
-      <div className="well">{props.children}</div>
+      <div>{props.children}</div>
     </BaseLayout>
   );
 }
