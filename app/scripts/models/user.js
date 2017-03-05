@@ -8,7 +8,8 @@ idAttribute: 'objectId',
 urlRoot: function(){
   return parse.BASE_API_URL + '/users';
 }
-},{
+},
+{
   login: function(cridentials, callback){
     var url = parse.BASE_API_URL + '/login?' + $.param(cridentials);
     $.get(url).then(data => {
