@@ -1,16 +1,19 @@
 var Backbone = require('backbone');
 
 var Recipe = Backbone.Model.extend({
-  idAttribute: 'objectId',
+  defaults: function(){
+    return {
+      ingredients: new IngredientCollection()
+    }
+  }
 });
 
 var RecipeCollection = Backbone.Collection.extend({
-  url: "https://tiny-parse-server.herokuapp.com/robison"
   model: Recipe
 });
 
 var Ingredient = Backbone.Model.extend({
-  idAttribute: 'objectId',
+
 });
 
 var IngredientCollection = Backbone.Collection.extend({
