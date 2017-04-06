@@ -1,8 +1,11 @@
 var React = require('react');
 
+var Headers = require('./header.jsx').Headers;
+
 function BaseLayout(props){
 return (
   <div className="container">
+    <Headers />
     <div className="row">
       <div className="col-md-12">
 

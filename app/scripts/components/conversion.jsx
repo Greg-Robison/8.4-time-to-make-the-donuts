@@ -5,6 +5,7 @@ var Backbone = require('backbone');
 var BaseLayout = require('./layouts/base.jsx').BaseLayout;
 var Recipe = require('../models/recipes.js').Recipe;
 var RecipeCollection = require('../models/recipes.js').RecipeCollection;
+var Headers = require('./layouts/header.jsx').Headers;
 
 
 class ConversionContainer extends React.Component {
@@ -56,6 +57,7 @@ class ConversionContainer extends React.Component {
         return (
             <div className="container">
             <div className="row">
+              <Headers />
                 <div className="col-md-8">
                     <div className="well">
                         <span className="heading">Makes </span>

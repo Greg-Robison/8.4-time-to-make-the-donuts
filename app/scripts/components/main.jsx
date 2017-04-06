@@ -1,10 +1,12 @@
 var React = require('react');
+var Headers = require('./layouts/header.jsx').Headers;
 
 
 class MainContainer extends React.Component{
   render(){
     return(
       <div className="container">
+        <Headers />
         <div className="row">
           <div className="well col-md-6">
             <form className="form-group">
