@@ -3,20 +3,25 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 var parse = require('./setup');
+var MainContainer = require('./components/main.jsx').MainContainer;
+var RecipeList = require('./components/recipeList.jsx').RecipeList;
 var LoginContainer = require('./components/login.jsx').LoginContainer;
 var ConversionContainer = require('./components/conversion.jsx').ConversionContainer;
 var models = require('./models/recipes.js');
 var AppRouter = Backbone.Router.extend({
   routes:{
     "": 'index',
-    'recipes/': 'recipeList'
+    'recipes/': 'recipe',
+    'recipe/list/': 'recipeList',
+    'recipe/add/': 'addRecipe',
+
   },
   initialize: function(){
     parse.setup({
       BASE_API_URL: 'https://tiny-parse-server.herokuapp.com'
     });
   },
-  recipeList: function(){
+  recipe: function(){
     var recipe = new models.Recipe({'name': 'Bacon Rice', 'servings': 4});
     recipe.get('ingredients').add([
       {'name': 'Minute Rice', 'qty': 2, 'units': 'Cups'},
@@ -33,6 +38,18 @@ var AppRouter = Backbone.Router.extend({
   index: function(){
     ReactDOM.render(
       React.createElement(LoginContainer),
+      document.getElementById('app')
+    );
+  },
+  addRecipe: function(){
+    ReactDOM.render(
+      React.createElement(MainContainer),
+      document.getElementById('app')
+    );
+  },
+  recipeList: function(){
+    ReactDOM.render(
+      React.createElement(RecipeList),
       document.getElementById('app')
     );
   }

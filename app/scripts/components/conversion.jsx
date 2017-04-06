@@ -12,22 +12,41 @@ class ConversionContainer extends React.Component {
     super(props);
     console.log(this.props.recipe);
     this.state = {
-      servings: this.props.recipe.get('servings')
+      servings: this.props.recipe.get('servings'),
+      conversion: 1
     }
 
     this.handleConversion = this.handleConversion.bind(this);
   }
-    handleConversion(e) {
-      this.setState({servings: e.target.value})
 
-    }
+  updateServingSize(e) {
+    e.preventDefault();
+    // console.log('e', e);
+    // console.log('target', e.target);
+    // console.log('value', e.target.value);
+    this.setState({ servings: e.target.value });
+    var updatedServingSize = e.target.value;
+    console.log('here', updatedServingSize);
+  }
+  handleConversion(e) {
+    e.preventDefault();
+    var updatedServingSize = this.state.servings;
+    console.log('this', updatedServingSize);
+    // this.setState({servings: e.target.value})
+    var servingSize = this.props.recipe.get('servings');
+    console.log('idiot', servingSize);
+    var conversion = (updatedServingSize / servingSize);
+    console.log('hey mac', conversion);
+    this.setState({ conversion });
+  }
 
     render() {
 
-      var ingredients = this.props.recipe.get('ingredients').map(function (ingredient) {
+      var ingredients = this.props.recipe.get('ingredients').map((ingredient)=>{
         return(
           <li className="col-md-6 well amount" key={ingredient.cid}>
-            <input className="check-box" type="text" name="" value=""/> {ingredient.get('qty')}
+            <input className="check-box" type="text" name="" value=""/>
+              <span> {ingredient.get('qty') * this.state.conversion}</span>
               <span> {ingredient.get('units')}</span>
               <span> {ingredient.get('name')}</span>
           </li>
@@ -40,7 +59,7 @@ class ConversionContainer extends React.Component {
                 <div className="col-md-8">
                     <div className="well">
                         <span className="heading">Makes </span>
-                        <span><input onChange={this.handleConversion} className="num-servings" type="text" name="" value={this.state.servings} placeholder="#"/></span>
+                        <span><input onChange={this.updateServingSize.bind(this)} className="num-servings" type="text" name="" value={this.state.servings} placeholder="#"/></span>
                         <span className="heading"> Servings</span>
                         <span onClick={this.handleConversion.bind(this)} className="adjust btn btn-primary">Adjust Recipe</span>
                         <span className="help">(<a href="https://www.merriam-webster.com/dictionary/help">Help</a>)</span>

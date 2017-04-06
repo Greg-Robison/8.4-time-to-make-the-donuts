@@ -13,14 +13,14 @@ class LoginContainer extends React.Component{
   }
   login(creds){
     User.login(creds, function(){
-      Backbone.history.navigate('recipes/', {trigger: true});
+      Backbone.history.navigate('recipe/list/', {trigger: true});
     })
   }
   createAccount(creds){
     var user = new User(creds);
     user.save().then(function(data){
       localStorage.setItem('user', JSON.stringify(data));
-      Backbone.history.navigate('recipes/', {trigger: true});
+      Backbone.history.navigate('recipe/list/', {trigger: true});
     })
   }
 
