@@ -9,6 +9,8 @@ var RecipeList = require('./components/recipeList.jsx').RecipeList;
 var LoginContainer = require('./components/login.jsx').LoginContainer;
 var ConversionContainer = require('./components/conversion.jsx').ConversionContainer;
 var models = require('./models/recipes.js');
+var User = require('./models/user').User;
+
 var AppRouter = Backbone.Router.extend({
   routes:{
     "": 'index',
@@ -23,6 +25,17 @@ var AppRouter = Backbone.Router.extend({
       BASE_API_URL: 'https://tiny-parse-server.herokuapp.com'
     });
   },
+  execute: function(callback, args, name){
+  var user = User.current();
+
+  if(!user && name == 'login' || !user && name == 'signup') {
+
+  } else if (!user && name != 'index'){
+    this.navigate("", {trigger: true});
+    return false;
+  }
+  return Backbone.Router.prototype.execute.apply(this, arguments);
+},
   recipe: function(){
     var recipe = new models.Recipe({'name': 'Bacon Rice', 'servings': 4});
     recipe.get('ingredients').add([
