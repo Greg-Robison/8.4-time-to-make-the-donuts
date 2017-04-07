@@ -1,30 +1,47 @@
 var Backbone = require('backbone');
 
-var Recipe = Backbone.Model.extend({
-  urlRoot: 'https://tiny-parse-server.herokuapp.com/recipes/',
+var ParseModel = require('../models/parsefile').ParseModel;
+var ParseCollection = require('../models/parsefile').ParseCollection;
+var ParseFile = require('../models/parsefile').ParseFile;
+
+var Recipe = ParseModel.extend({
+  urlRoot: 'https://tiny-parse-server.herokuapp.com/classes/Recipes/',
   defaults: function(){
     return {
+      steps: [],
       ingredients: new IngredientCollection()
     }
   }
 });
 
-var RecipeCollection = Backbone.Collection.extend({
+var RecipeCollection = ParseCollection.extend({
   model: Recipe,
-  urlRoot: 'https://tiny-parse-server.herokuapp.com/recipes/'
+  baseUrl: 'https://tiny-parse-server.herokuapp.com/classes/Recipes/'
 });
 
-var Ingredient = Backbone.Model.extend({
-
+var Step = ParseModel.extend({
+urlRoot: 'https://tiny-parse-server.herokuapp.com/classesRecipes/',
 });
 
-var IngredientCollection = Backbone.Collection.extend({
-  model: Ingredient
+var StepCollection = ParseCollection.extend({
+  model: Step,
+  baseUrl: 'https://tiny-parse-server.herokuapp.com/classesRecipes/',
+});
+
+var Ingredient = ParseModel.extend({
+urlRoot: 'https://tiny-parse-server.herokuapp.com/classesRecipes/',
+});
+
+var IngredientCollection = ParseCollection.extend({
+  model: Ingredient,
+  baseUrl: 'https://tiny-parse-server.herokuapp.com/classes/Recipes/'
 });
 
 module.exports = {
   Recipe,
   RecipeCollection,
+  Step,
+  StepCollection,
   Ingredient,
   IngredientCollection
 };
