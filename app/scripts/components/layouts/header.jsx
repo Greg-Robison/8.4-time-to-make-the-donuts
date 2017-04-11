@@ -22,6 +22,7 @@ class Headers extends React.Component {
                         <li><a href="#recipe/add/">Add a Recipe</a></li>
                         <li><a href="#recipe/list/">Recipe List </a></li>
                     </ul>
+                    
                     <ul className="nav navbar-nav navbar-right">
                       <li><a href="">Log In</a></li>
                       <li><a href="#">Log Out</a></li>

@@ -16,6 +16,7 @@ var AppRouter = Backbone.Router.extend({
     "": 'index',
     'marketing/': 'marketing',
     'recipes/': 'recipe',
+    'recipes/:id/': 'recipe',
     'recipe/list/': 'recipeList',
     'recipe/add/': 'addRecipe',
 
@@ -36,17 +37,17 @@ var AppRouter = Backbone.Router.extend({
   }
   return Backbone.Router.prototype.execute.apply(this, arguments);
 },
-  recipe: function(){
-    var recipe = new models.Recipe({'name': 'Bacon Rice', 'servings': 4});
-    recipe.get('ingredients').add([
-      {'name': 'Minute Rice', 'qty': 2, 'units': 'Cups'},
-      {'name': 'Water', 'qty': 2, 'units': 'Cups'},
-      {'name': 'Beef Bouillon', 'qty': 4, 'units': 'Cubes'},
-      {'name': 'Bacon', 'qty': 6, 'units': 'Strips'},
-      {'name': 'Yellow Onion', 'qty': 1, 'units': 'Cup (Diced)'},
-    ]);
+  recipe: function(id){
+    // var recipe = new models.Recipe({'name': 'Bacon Rice', 'servings': 4});
+    // recipe.get('ingredients').add([
+    //   {'name': 'Minute Rice', 'qty': 2, 'units': 'Cups'},
+    //   {'name': 'Water', 'qty': 2, 'units': 'Cups'},
+    //   {'name': 'Beef Bouillon', 'qty': 4, 'units': 'Cubes'},
+    //   {'name': 'Bacon', 'qty': 6, 'units': 'Strips'},
+    //   {'name': 'Yellow Onion', 'qty': 1, 'units': 'Cup (Diced)'},
+    // ]);
     ReactDOM.render(
-      React.createElement(ConversionContainer, {recipe: recipe}),
+      React.createElement(ConversionContainer, { id: id }),
       document.getElementById('app')
     )
   },

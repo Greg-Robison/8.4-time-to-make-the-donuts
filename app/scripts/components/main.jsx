@@ -2,35 +2,32 @@ var React = require('react');
 var Headers = require('./layouts/header.jsx').Headers;
 var Recipe = require('../models/recipes.js').Recipe;
 var RecipeCollection = require('../models/recipes.js').RecipeCollection;
-var Step = require('../models/recipes.js').Step;
-var StepCollection = require('../models/recipes.js').StepCollection;
+var Ingredient = require('../models/recipes.js').Ingredient;
+var IngredientCollection = require('../models/recipes.js').IngredientCollection;
 
-class StepComponent extends React.Component {
+class IngredientComponent extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       amount: '',
       unit: '',
-      ingredient: '',
-      directions: ''
+      ingredient: ''
     }
-    this.handleAddStep = this.handleAddStep.bind(this);
+    this.handleAddIngredient = this.handleAddIngredient.bind(this);
   }
-  handleAddStep(e){
-    var step = this.props.step;
-    step.set({ [e.target.name]: e.target.value });
-    this.props.handleStep(step);
+  handleAddIngredient(e){
+    var ingredient = this.props.ingredient;
+    ingredient.set({ [e.target.name]: e.target.value });
+    this.props.handleIngredient(ingredient);
   }
     render(){
       return(
         <div>
-          <span><input onChange={this.handleAddStep} type="text" name="amount" value={this.state.amount} placeholder="amount"/>
-          <input onChange={this.handleAddStep} type="text" name="unit" value={this.state.unit} placeholder="unit"/>
-          <input onChange={this.handleAddStep} type="text" name="ingredient" value={this.state.ingredient} placeholder="ingredient" />
-          <input onChange={this.handleAddStep} type="text" name="directions" placeholder="directions for this step" />
-              <button onClick={this.handleAddStep}>add</button>
+          <span><input onChange={this.handleAddIngredient} type="text" name="amount" placeholder="amount"/>
+          <input onChange={this.handleAddIngredient} type="text" name="unit" placeholder="unit"/>
+          <input onChange={this.handleAddIngredient} type="text" name="ingredient" placeholder="ingredient" />
+          <textarea onChange={this.handleAddIngredient} type="text" name="directions" placeholder="directions for this step" />
           </span>
-
         </div>
     )
   }
@@ -39,26 +36,25 @@ class MainContainer extends React.Component {
   constructor(props){
     super(props);
 
-    var stepCollection = new StepCollection();
+    var ingredientCollection = new IngredientCollection();
 
     this.state = {
-      title: '',
-      steps: stepCollection
+      ingredients: ingredientCollection
     }
     this.handleRecipe = this.handleRecipe.bind(this);
     this.handleInstructions = this.handleInstructions.bind(this);
     this.handleNotes = this.handleNotes.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleAddIngredient = this.handleAddIngredient.bind(this);
-    this.handleStep = this.handleStep.bind(this);
+    this.handleIngredient = this.handleIngredient.bind(this);
 
   }
   componentDidMount() {
-    if(this.state.steps.length == 0){
-      var steps = this.state.steps;
-      var step = new Step();
-      steps.add(step);
-      this.setState({ steps });
+    if(this.state.ingredients.length == 0){
+      var ingredients = this.state.ingredients;
+      var ingredient = new Ingredient();
+      ingredients.add(ingredient);
+      this.setState({ ingredients });
     }
   }
   handleRecipe(e){
@@ -80,33 +76,37 @@ class MainContainer extends React.Component {
   }
   handleAddIngredient(e){
     e.preventDefault();
+    var ingredients = this.state.ingredients;
+    var ingredient = new Ingredient();
+    ingredients.add(ingredient);
+    this.setState({ ingredients });
   }
 
-  handleStep(step){
-    var steps = this.state.steps;
-    steps.add(step);
-    this.setState({ steps })
-    // console.log('mama state', this.state);
+  handleIngredient(ingredient){
+    var ingredients = this.state.ingredients;
+    ingredients.add(ingredient);
+    this.setState({ ingredients })
+    console.log('mama state', this.state);
   }
 
     render() {
-      var steps = this.state.steps;
-      var steps = this.state.steps.map((step, index)=>{
+      var ingredients = this.state.ingredients;
+      var ingredients = this.state.ingredients.map((ingredient, index)=>{
         return (
-          <StepComponent key={ index } step={step} handleStep={ this.handleStep }/>
+          <IngredientComponent key={ index } ingredient={ingredient} handleIngredient={ this.handleIngredient }/>
         )
       })
         return (
             <div className="container">
                 <Headers/>
                 <div className="row">
-
-                    <h3>Basic Info</h3>
+                  <div className="well">
+                    <h3>Input your own Custom Recipe!!</h3>
                     <hr/>
                     <img src="https://unsplash.it/100/100" alt="" />
 
-                        <input onChange={this.handleRecipe} type="text" name="title" value={this.state.title} placeholder="Recipe Name"/>
-                        <input onChange={this.handleRecipe} type="text" name="author" value={this.state.author} placeholder="By"/>
+                        <input className="input1" onChange={this.handleRecipe} type="text" name="title" value={this.state.title} placeholder="Recipe Name"/>
+                        <input className="input2" onChange={this.handleRecipe} type="text" name="author" value={this.state.author} placeholder="By"/>
                         <div className="">
                             <p>
                                 <input onChange={this.public} type="checkbox" id="cbox1" value="first_checkbox"/>
@@ -125,26 +125,29 @@ class MainContainer extends React.Component {
                                     <input onChange={this.handleRecipe} type="text" name="servings" value={this.state.servings} placeholder="# of servings"/>
                                     servings</p>
                             </span>
-                            <button onClick={this.handleSubmit} className="btn btn-primary">submit</button>
 
                             <h3>Step 1</h3>
                             <hr />
-                            { steps }
-                            <div className="well">
-                                <input onChange={this.handleInstructions} type="text" name="directions" value={this.state.directions} placeholder="Directions htmlFor this step"/>
+                            <div className="col-md-6">
+                            { ingredients }
                             </div>
-                            <div><button onClick={this.handleAddStep} className="btn btn-default">
+                            <div className="col-md-6">
+                            </div>
+
+                            <div><button onClick={this.handleAddIngredient} className="btn btn-default">
                                 add another step</button>
                             </div>
-                            <button className="btn btn-primary">submit steps</button>
 
                             <h3>personal notes</h3>
+
                             <hr/>
-                            <input onChange={this.handleNotes} type="text" name="notes" value={this.state.notes} placeholder="notes"/>
+                            <textarea onChange={this.handleNotes} type="text" name="notes" value={this.state.notes} placeholder="notes"/>
                             <div>
-                              <button className="btn btn-default">Save this Recipe</button>
+                              <button onClick={this.handleSubmit} className="btn btn-primary">submit</button>
+
                             </div>
                         </div>
+                    </div>
                     </div>
                   </div>
                     ) } }; module.exports = {MainContainer

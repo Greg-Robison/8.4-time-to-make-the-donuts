@@ -11,10 +11,21 @@ var Headers = require('./layouts/header.jsx').Headers;
 class ConversionContainer extends React.Component {
   constructor(props){
     super(props);
-    console.log(this.props.recipe);
+    console.log('hey', this.props.recipe);
+    var self = this;
+    var recipe = new Recipe();
+
+    if(this.props.id){
+     recipe.set('objectId', this.props.id);
+     recipe.fetch().then(() => {
+       this.setState({recipe: recipe, servings: recipe.get('servings')});
+     });
+   }
+
     this.state = {
-      servings: this.props.recipe.get('servings'),
-      conversion: 1
+      servings: recipe.get('servings'),
+      conversion: 1,
+      recipe
     }
 
     this.handleConversion = this.handleConversion.bind(this);
@@ -42,17 +53,19 @@ class ConversionContainer extends React.Component {
   }
 
     render() {
-
-      var ingredients = this.props.recipe.get('ingredients').map((ingredient)=>{
+      var recipe = this.state.recipe;
+      console.log('recipe', recipe);
+      var ingredients = this.state.recipe.get('ingredients').map((ingredient)=>{
         return(
           <li className="col-md-6 well amount" key={ingredient.cid}>
             <input className="check-box" type="text" name="" value=""/>
-              <span> {ingredient.get('qty') * this.state.conversion}</span>
-              <span> {ingredient.get('units')}</span>
-              <span> {ingredient.get('name')}</span>
+              <span> {ingredient.amount * this.state.conversion}</span>
+              <span> {ingredient.unit}</span>
+              <span> {ingredient.ingredient}</span>
           </li>
         )
       })
+
 
         return (
             <div className="container">
@@ -60,6 +73,7 @@ class ConversionContainer extends React.Component {
               <Headers />
                 <div className="col-md-8">
                     <div className="well">
+                      <h2>{this.state.recipe.get('title')}</h2>
                         <span className="heading">Makes </span>
                         <span><input onChange={this.updateServingSize.bind(this)} className="num-servings" type="text" name="" value={this.state.servings} placeholder="#"/></span>
                         <span className="heading"> Servings</span>
@@ -76,16 +90,7 @@ class ConversionContainer extends React.Component {
                     </div>
                 </div>
             </div>
-            <div className="row">
-              <div className="col-xs-8 col-md-8">
-                  <a href="#" className="col-md-2 thumbnail"><img src="./images/shrimp.jpg" alt="#"></img></a>
-                    <a href="#" className="col-md-2 thumbnail"><img src="./images/roast.jpg" alt="#"></img></a>
-                      <a href="#" className="col-md-2 thumbnail"><img src="./images/oatmeal.jpg" alt="#"></img></a>
-                        <a href="#" className="col-md-2 thumbnail"><img src="./images/chicken.jpg" alt="#"></img></a>
 
-            </div>
-
-          </div>
         </div>
 
 
