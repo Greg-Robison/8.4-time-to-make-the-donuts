@@ -45,7 +45,7 @@ class ConversionContainer extends React.Component {
     var updatedServingSize = this.state.servings;
     console.log('this', updatedServingSize);
     // this.setState({servings: e.target.value})
-    var servingSize = this.props.recipe.get('servings');
+    var servingSize = this.state.recipe.get('servings');
     console.log('idiot', servingSize);
     var conversion = (updatedServingSize / servingSize);
     console.log('hey mac', conversion);
@@ -55,14 +55,17 @@ class ConversionContainer extends React.Component {
     render() {
       var recipe = this.state.recipe;
       console.log('recipe', recipe);
-      var ingredients = this.state.recipe.get('ingredients').map((ingredient)=>{
+      var ingredients = this.state.recipe.get('ingredients').map((ingredient, index)=>{
         return(
-          <li className="col-md-6 well amount" key={ingredient.cid}>
+          <li className="col-md-6 well amount" key={index}>
             <input className="check-box" type="text" name="" value=""/>
-              <span> {ingredient.amount * this.state.conversion}</span>
+              <span> {eval(ingredient.amount) * this.state.conversion}</span>
               <span> {ingredient.unit}</span>
               <span> {ingredient.ingredient}</span>
+              <br />
+              <span> {ingredient.directions}</span>
           </li>
+
         )
       })
 
@@ -87,7 +90,11 @@ class ConversionContainer extends React.Component {
                       <ul>
                         {ingredients}
                       </ul>
-                    </div>
+                      </div>
+                      <div className="well">
+                      <h3>{this.state.recipe.get('notes')}</h3>
+                      </div>
+
                 </div>
             </div>
 

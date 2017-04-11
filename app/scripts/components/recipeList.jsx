@@ -29,7 +29,7 @@ class RecipeList extends React.Component{
     var recipeCollection = this.state.recipeCollection;
     var menuItems = recipeCollection.map(function(recipeItem){
        return (
-         <RecipeItem recipeItem={recipeItem}/>
+         <RecipeItem key={recipeItem.cid} recipeItem={recipeItem}/>
        )
     })
     return(
@@ -55,7 +55,7 @@ class RecipeItem extends React.Component{
   }
 
   render(){
-    
+
     return(
       <li><a href={'#recipes/' + this.props.recipeItem.id +'/'}>{ this.props.recipeItem.get("title") }</a></li>
     )
