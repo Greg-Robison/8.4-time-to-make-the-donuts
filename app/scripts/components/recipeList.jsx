@@ -57,7 +57,7 @@ class RecipeItem extends React.Component{
   render(){
 
     return(
-      <li><a href={'#recipes/' + this.props.recipeItem.id +'/'}>{ this.props.recipeItem.get("title") }</a></li>
+      <li><a href={'#recipes/' + this.props.recipeItem.id +'/'}>{ this.props.recipeItem.get("title") }</a><span> by {this.props.recipeItem.get('author')}</span></li>
     )
   }
 }
