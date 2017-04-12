@@ -86,7 +86,7 @@ class ConversionContainer extends React.Component {
                             <span className="ing"><img className="check" src="./images/check.jpg" alt=""/>ingriedients now reflects the new serving size</span>
 
                         </div>
-                        <button className="btn btn-primary">Edit Recipe</button>
+                        <a href={'#recipe/edit/' + this.state.recipe.id + '/'}className="btn btn-primary">Edit Recipe</a>
                     </div>
                     <div className="row">
                       <ul>
