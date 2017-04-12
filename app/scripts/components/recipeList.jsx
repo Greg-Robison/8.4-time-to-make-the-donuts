@@ -22,14 +22,24 @@ class RecipeList extends React.Component{
 
     recipeCollection.fetch().then(function(){
       self.setState({ recipeCollection })
-    })
+    });
+
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleDelete(recipeItem) {
+    recipeItem.destroy();
+    var recipeCollection = this.state.recipeCollection;
+    recipeCollection.remove(recipeItem);
+    this.setState({ recipeCollection });
   }
 
   render(){
+    var self = this;
     var recipeCollection = this.state.recipeCollection;
     var menuItems = recipeCollection.map(function(recipeItem){
        return (
-         <RecipeItem key={recipeItem.cid} recipeItem={recipeItem}/>
+         <RecipeItem key={recipeItem.cid} recipeItem={recipeItem} handleDelete={self.handleDelete}/>
        )
     })
     return(
@@ -54,10 +64,11 @@ class RecipeItem extends React.Component{
     super(props)
   }
 
-  render(){
 
+  render(){
+    console.log(this.props);
     return(
-      <li><a href={'#recipes/' + this.props.recipeItem.id +'/'}>{ this.props.recipeItem.get("title") }</a><span> by {this.props.recipeItem.get('author')}</span></li>
+      <li><a href={'#recipes/' + this.props.recipeItem.id +'/'}>{ this.props.recipeItem.get("title") }</a><span> by {this.props.recipeItem.get('author')}</span><button className="delete btn btn-primary" onClick={()=>this.props.handleDelete(this.props.recipeItem)}>Delete Recipe</button></li>
     )
   }
 }
