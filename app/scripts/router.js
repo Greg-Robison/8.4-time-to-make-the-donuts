@@ -15,6 +15,7 @@ var AppRouter = Backbone.Router.extend({
   routes:{
     "": 'index',
     'marketing/': 'marketing',
+    'login/': 'login',
     'recipes/': 'recipe',
     'recipes/:id/': 'recipe',
     'recipe/list/': 'recipeList',
@@ -53,6 +54,12 @@ var AppRouter = Backbone.Router.extend({
     )
   },
   index: function(){
+    ReactDOM.render(
+      React.createElement(MarketingContainer),
+      document.getElementById('app')
+    );
+  },
+  login: function(){
     ReactDOM.render(
       React.createElement(LoginContainer),
       document.getElementById('app')

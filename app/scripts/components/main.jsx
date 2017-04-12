@@ -15,7 +15,6 @@ class IngredientComponent extends React.Component {
       directions: this.props.ingredient.get('directions'),
     }
 
-    console.log('this is my ingredient', this.props.ingredient);
     this.handleAddIngredient = this.handleAddIngredient.bind(this);
   }
   componentWillReceiveProps(nextProps){
@@ -25,7 +24,6 @@ class IngredientComponent extends React.Component {
       ingredient: nextProps.ingredient.get('ingredient'),
       directions: nextProps.ingredient.get('directions'),
     })
-    console.log('nextProps', nextProps);
   }
   handleAddIngredient(e){
     this.setState({ [e.target.name]: e.target.value })
@@ -36,10 +34,10 @@ class IngredientComponent extends React.Component {
     render(){
       return(
         <div>
-          <span><input onChange={this.handleAddIngredient} type="text" name="amount" placeholder="amount" value={this.state.amount}/>
-          <input onChange={this.handleAddIngredient} type="text" name="unit" placeholder="unit" value={this.state.unit}/>
-          <input onChange={this.handleAddIngredient} type="text" name="ingredient" placeholder="ingredient" value={this.state.ingredient}/>
-          <textarea onChange={this.handleAddIngredient} type="text" name="directions" placeholder="directions for this step" value={this.state.directions}/>
+          <span><input onChange={this.handleAddIngredient} type="text" name="amount" placeholder="Amount" value={this.state.amount}/>
+          <input onChange={this.handleAddIngredient} type="text" name="unit" placeholder="Unit" value={this.state.unit}/>
+          <input onChange={this.handleAddIngredient} type="text" name="ingredient" placeholder="Ingredient" value={this.state.ingredient}/>
+          <textarea onChange={this.handleAddIngredient} type="text" name="directions" placeholder="Directions for this step" value={this.state.directions}/>
           </span>
         </div>
     )
@@ -60,14 +58,14 @@ class MainContainer extends React.Component {
       recipe.fetch().then(()=>{
         var collection = new IngredientCollection();
         collection.add(recipe.get('ingredients'));
-        console.log('collection', collection);
         this.setState({
           author: recipe.get('author') ,
           title: recipe.get('title'),
           servings: recipe.get('servings'),
           notes: recipe.get('notes'),
           directions: recipe.get('directions'),
-          ingredients: collection
+          ingredients: collection,
+          recipe
         });
       })
     }
@@ -104,7 +102,16 @@ class MainContainer extends React.Component {
   }
   handleSubmit(e){
     e.preventDefault();
-    var recipe = new Recipe(this.state);
+    var recipe;
+    if(this.state.recipe){
+      recipe = this.state.recipe;
+      recipe.set(this.state)
+      recipe.unset('recipe');
+    } else {
+      recipe = new Recipe(this.state);
+      recipe.unset('recipe');
+    }
+
     recipe.save();
   }
   handleAddIngredient(e){
@@ -124,7 +131,6 @@ class MainContainer extends React.Component {
     render() {
         var ingredientsCollection = this.state.ingredients;
         var ingredients = ingredientsCollection.map((ingredient, index)=>{
-          console.log('ingredient first', ingredient);
           return (
             <IngredientComponent key={ index } ingredient={ingredient} handleIngredient={ this.handleIngredient }/>
           )
@@ -134,7 +140,7 @@ class MainContainer extends React.Component {
                 <Headers/>
                 <div className="row">
                   <div className="well">
-                      <h3>Input your own Custom Recipe!!</h3>
+                      <h3 className="custom">Input your own Custom Recipe!!</h3>
                     <hr/>
                     <img src="https://unsplash.it/100/100" alt="" />
 
@@ -168,15 +174,15 @@ class MainContainer extends React.Component {
                             </div>
 
                             <div><button onClick={this.handleAddIngredient} className="btn btn-default">
-                                add another step</button>
+                                Add Another Step</button>
                             </div>
 
-                            <h3>personal notes</h3>
+
 
                             <hr/>
-                            <textarea onChange={this.handleNotes} type="text" name="notes" value={this.state.notes} placeholder="notes"/>
+                            <textarea onChange={this.handleNotes} type="text" name="notes" value={this.state.notes} placeholder="Instructions for Cooking"/>
                             <div>
-                              <button onClick={this.handleSubmit} className="btn btn-primary">submit</button>
+                              <button onClick={this.handleSubmit} className="btn btn-primary">Submit</button>
 
                             </div>
                         </div>

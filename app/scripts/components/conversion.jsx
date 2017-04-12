@@ -11,7 +11,6 @@ var Headers = require('./layouts/header.jsx').Headers;
 class ConversionContainer extends React.Component {
   constructor(props){
     super(props);
-    console.log('hey', this.props.recipe);
     var self = this;
     var recipe = new Recipe();
 
@@ -33,28 +32,20 @@ class ConversionContainer extends React.Component {
 
   updateServingSize(e) {
     e.preventDefault();
-    // console.log('e', e);
-    // console.log('target', e.target);
-    // console.log('value', e.target.value);
     this.setState({ servings: e.target.value });
     var updatedServingSize = e.target.value;
-    console.log('here', updatedServingSize);
   }
   handleConversion(e) {
     e.preventDefault();
     var updatedServingSize = this.state.servings;
-    console.log('this', updatedServingSize);
     // this.setState({servings: e.target.value})
     var servingSize = this.state.recipe.get('servings');
-    console.log('idiot', servingSize);
     var conversion = (updatedServingSize / servingSize);
-    console.log('hey mac', conversion);
     this.setState({ conversion });
   }
 
     render() {
       var recipe = this.state.recipe;
-      console.log('recipe', recipe);
       var ingredients = this.state.recipe.get('ingredients').map((ingredient, index)=>{
         return(
           <li className="col-md-6 well amount" key={index}>

@@ -25,6 +25,10 @@ urlRoot: function(){
     });
     return newUser;
   },
+  logout: function(){
+    var url = parse.BASE_API_URL + '/logout?';
+    $.post(url).then(event=>console.log(event));
+  },
   store: function(user){
     localStorage.setItem('user', JSON.stringify(user.toJSON()));
   },

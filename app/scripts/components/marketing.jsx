@@ -8,7 +8,8 @@ class MarketingContainer extends React.Component {
   return(
     <div className="container">
       <Headers />
-    <div>Well Hello There!!</div>
+        <img className="logo" alt="Brand" src="images/logocook.png" />
+
     </div>
   )
   }
