@@ -73,7 +73,7 @@ class LoginForm extends React.Component {
     return(
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
-          <label htmlFor="email-login">Email Address</label>
+          <label className="welcome2" htmlFor="email-login">Email Address</label>
           <input onChange={this.handleEmailChange} className="form-control" name="email" id="email-login" placeholder="E-mail"/>
         </div>
         <div className="form-group">

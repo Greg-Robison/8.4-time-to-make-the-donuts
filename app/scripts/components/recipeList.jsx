@@ -46,7 +46,7 @@ class RecipeList extends React.Component{
       <BaseLayout>
           <div className="container">
               <div className="row">
-                <div className="well col-md-6">
+                <div className="well col-md-10">
                   <ul>
                     { menuItems }
                   </ul>
@@ -68,7 +68,8 @@ class RecipeItem extends React.Component{
   render(){
     console.log(this.props);
     return(
-      <li><a href={'#recipes/' + this.props.recipeItem.id +'/'}>{ this.props.recipeItem.get("title") }</a><span> by {this.props.recipeItem.get('author')}</span><button className="delete btn btn-primary" onClick={()=>this.props.handleDelete(this.props.recipeItem)}>Delete Recipe</button></li>
+      <li><h2>{ this.props.recipeItem.get("title") }</h2><h4> by {this.props.recipeItem.get('author')}</h4><span className="span"><a className="recipe btn btn-primary" href={'#recipes/' + this.props.recipeItem.id +'/'}>See Recipe</a></span>
+      <button className="delete btn btn-danger" onClick={()=>this.props.handleDelete(this.props.recipeItem)}>Delete Recipe</button><hr /></li>
     )
   }
 }

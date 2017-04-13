@@ -25,7 +25,7 @@ function Header(props){
 }
 function AnonHeader(props){
   return(
-    <h1>Please Signin To Use Greg's Recipe Managenment App</h1>
+    <h1 className="welcome">Please Signin To Use Greg's Recipe Managenment App</h1>
   );
 }
 module.exports = {
