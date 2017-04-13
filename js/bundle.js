@@ -133,7 +133,7 @@ function Header(props){
 }
 function AnonHeader(props){
   return(
-    React.createElement("h1", null, "Please Signin To Use Greg's Recipe Managenment App")
+    React.createElement("h1", {className: "welcome"}, "Please Signin To Use Greg's Recipe Managenment App")
   );
 }
 module.exports = {
@@ -291,7 +291,7 @@ class LoginForm extends React.Component {
     return(
       React.createElement("form", {onSubmit: this.handleSubmit}, 
         React.createElement("div", {className: "form-group"}, 
-          React.createElement("label", {htmlFor: "email-login"}, "Email Address"), 
+          React.createElement("label", {className: "welcome2", htmlFor: "email-login"}, "Email Address"), 
           React.createElement("input", {onChange: this.handleEmailChange, className: "form-control", name: "email", id: "email-login", placeholder: "E-mail"})
         ), 
         React.createElement("div", {className: "form-group"}, 
@@ -581,7 +581,7 @@ class RecipeList extends React.Component{
       React.createElement(BaseLayout, null, 
           React.createElement("div", {className: "container"}, 
               React.createElement("div", {className: "row"}, 
-                React.createElement("div", {className: "well col-md-6"}, 
+                React.createElement("div", {className: "well col-md-10"}, 
                   React.createElement("ul", null, 
                      menuItems 
                   )
@@ -603,7 +603,8 @@ class RecipeItem extends React.Component{
   render(){
     console.log(this.props);
     return(
-      React.createElement("li", null, React.createElement("a", {href: '#recipes/' + this.props.recipeItem.id +'/'},  this.props.recipeItem.get("title") ), React.createElement("span", null, " by ", this.props.recipeItem.get('author')), React.createElement("button", {className: "delete btn btn-primary", onClick: ()=>this.props.handleDelete(this.props.recipeItem)}, "Delete Recipe"))
+      React.createElement("li", null, React.createElement("h2", null,  this.props.recipeItem.get("title") ), React.createElement("h4", null, " by ", this.props.recipeItem.get('author')), React.createElement("span", {className: "span"}, React.createElement("a", {className: "recipe btn btn-primary", href: '#recipes/' + this.props.recipeItem.id +'/'}, "See Recipe")), 
+      React.createElement("button", {className: "delete btn btn-danger", onClick: ()=>this.props.handleDelete(this.props.recipeItem)}, "Delete Recipe"), React.createElement("hr", null))
     )
   }
 }
