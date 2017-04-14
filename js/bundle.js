@@ -65,15 +65,16 @@ class ConversionContainer extends React.Component {
 
         return (
             React.createElement("div", {className: "container"}, 
-            React.createElement("div", {className: "row"}, 
               React.createElement(Headers, null), 
+            React.createElement("div", {className: "row"}, 
+
                 React.createElement("div", {className: "col-md-8"}, 
                     React.createElement("div", {className: "well"}, 
                         React.createElement("h2", null, React.createElement("span", null, this.state.recipe.get('title')), React.createElement("span", {className: "by"}, " by "), React.createElement("span", null, this.state.recipe.get('author'))), 
                         React.createElement("span", {className: "heading"}, "Makes "), 
                         React.createElement("span", null, React.createElement("input", {onChange: this.updateServingSize.bind(this), className: "num-servings", type: "text", name: "", value: this.state.servings, placeholder: "#"})), 
                         React.createElement("span", {className: "heading"}, " Servings"), 
-                        React.createElement("span", {onClick: this.handleConversion.bind(this), className: "adjust btn btn-primary"}, "Adjust Recipe Serving Size"), 
+                        React.createElement("span", {onClick: this.handleConversion.bind(this), className: "adjust btn btn-primary"}, React.createElement("img", {className: "button-logo", src: "./images/logo9.png"}), " Adjust Recipe Serving Size"), 
                         React.createElement("span", {className: "help"}, "(", React.createElement("a", {href: "https://www.merriam-webster.com/dictionary/help"}, "Help"), ")"), 
                         React.createElement("div", {className: "well"}, 
                             React.createElement("span", {className: "ing"}, React.createElement("img", {className: "check", src: "./images/check.jpg", alt: ""}), "ingriedients now reflects the new serving size")
@@ -128,12 +129,12 @@ return (
 }
 function Header(props){
   return(
-    React.createElement("h1", {className: "welcome text-center"}, "Welcome to Greg's Recipe Managenment App")
+    React.createElement("h1", {className: "welcome text-center"}, "Welcome to You Are The Chef")
   );
 }
 function AnonHeader(props){
   return(
-    React.createElement("h1", {className: "welcome"}, "Please Signin To Use Greg's Recipe Managenment App")
+    React.createElement("h1", {className: "welcome"}, "You Are The Chef")
   );
 }
 module.exports = {
@@ -172,18 +173,18 @@ class Headers extends React.Component {
               React.createElement("span", {className: "icon-bar"}), 
               React.createElement("span", {className: "icon-bar"})
             ), 
-                    React.createElement("a", {className: "navbar-brand", href: "#marketing/"}, "Brand")
+                    React.createElement("a", {className: "navbar-brand", href: "#marketing/"}, React.createElement("img", {className: "logo-head", src: "images/logocook.png"}))
                 ), 
                 React.createElement("div", {className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1"}, 
                     React.createElement("ul", {className: "nav navbar-nav"}, 
-                        React.createElement("li", {className: "active"}, React.createElement("a", {href: "#recipes/"}, "Recipes ", React.createElement("span", {className: "sr-only"}, "(current)"))), 
-                        React.createElement("li", null, React.createElement("a", {href: "#recipe/add/"}, "Add a Recipe")), 
-                        React.createElement("li", null, React.createElement("a", {href: "#recipe/list/"}, "Recipe List "))
+                        React.createElement("li", null, React.createElement("a", {href: "#recipes/"}, React.createElement("h4", {className: "head"}, "Recipe Display"), " ", React.createElement("span", {className: "sr-only"}, "(current)"))), 
+                        React.createElement("li", null, React.createElement("a", {href: "#recipe/add/"}, React.createElement("h4", {className: "head"}, "Add a Recipe"))), 
+                        React.createElement("li", null, React.createElement("a", {href: "#recipe/list/"}, React.createElement("h4", {className: "head"}, "Recipe List")))
                     ), 
 
                     React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
-                      React.createElement("li", null, React.createElement("a", {href: "#login/"}, "Log In")), 
-                      React.createElement("li", null, React.createElement("a", {href: "#", onClick: this.logOut}, "Log Out"))
+                      React.createElement("li", null, React.createElement("a", {href: "#login/"}, React.createElement("h4", {className: "head"}, "Sign In"))), 
+                      React.createElement("li", null, React.createElement("a", {href: "#", onClick: this.logOut}, React.createElement("h4", {className: "head"}, "Sign Out")))
                       )
                 )
             )
@@ -603,7 +604,7 @@ class RecipeItem extends React.Component{
   render(){
     console.log(this.props);
     return(
-      React.createElement("li", null, React.createElement("h2", null,  this.props.recipeItem.get("title") ), React.createElement("h4", null, " by ", this.props.recipeItem.get('author')), React.createElement("span", {className: "span"}, React.createElement("a", {className: "recipe btn btn-primary", href: '#recipes/' + this.props.recipeItem.id +'/'}, "See Recipe")), 
+      React.createElement("li", null, React.createElement("h2", null,  this.props.recipeItem.get("title") ), React.createElement("h4", null, " by ", this.props.recipeItem.get('author')), React.createElement("span", {className: "span"}, React.createElement("a", {className: "recipe btn btn-primary", href: '#recipes/' + this.props.recipeItem.id +'/'}, React.createElement("img", {className: "button-logo", src: "./images/logo9.png"}), " See Recipe")), 
       React.createElement("button", {className: "delete btn btn-danger", onClick: ()=>this.props.handleDelete(this.props.recipeItem)}, "Delete Recipe"), React.createElement("hr", null))
     )
   }
