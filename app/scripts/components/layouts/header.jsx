@@ -32,9 +32,9 @@ class Headers extends React.Component {
                 </div>
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul className="nav navbar-nav">
-                        <li><a href="#recipes/"><h4 className="head">Recipe Display</h4> <span className="sr-only">(current)</span></a></li>
-                        <li ><a href="#recipe/add/"><h4 className="head">Add a Recipe</h4></a></li>
-                        <li><a href="#recipe/list/"><h4 className="head">Recipe List</h4></a></li>
+                      <li><a href="#recipe/list/"><h4 className="head">Recipe List</h4></a></li>
+                      <li ><a href="#recipe/add/"><h4 className="head">Add a Recipe</h4></a></li>
+                      <li><a href="#recipes/"><h4 className="head">Recipe Display</h4> <span className="sr-only">(current)</span></a></li>
                     </ul>
 
                     <ul className="nav navbar-nav navbar-right">
