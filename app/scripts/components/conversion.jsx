@@ -63,15 +63,16 @@ class ConversionContainer extends React.Component {
 
         return (
             <div className="container">
-            <div className="row">
               <Headers />
+            <div className="row">
+
                 <div className="col-md-8">
                     <div className="well">
                         <h2><span>{this.state.recipe.get('title')}</span><span className="by"> by </span><span>{this.state.recipe.get('author')}</span></h2>
                         <span className="heading">Makes </span>
                         <span><input onChange={this.updateServingSize.bind(this)} className="num-servings" type="text" name="" value={this.state.servings} placeholder="#"/></span>
                         <span className="heading"> Servings</span>
-                        <span onClick={this.handleConversion.bind(this)} className="adjust btn btn-primary">Adjust Recipe Serving Size</span>
+                        <span onClick={this.handleConversion.bind(this)} className="adjust btn btn-primary"><img className="button-logo"src="./images/logo9.png" /> Adjust Recipe Serving Size</span>
                         <span className="help">(<a href="https://www.merriam-webster.com/dictionary/help">Help</a>)</span>
                         <div className="well">
                             <span className="ing"><img className="check" src="./images/check.jpg" alt=""/>ingriedients now reflects the new serving size</span>

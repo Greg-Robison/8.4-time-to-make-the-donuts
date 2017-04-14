@@ -54,7 +54,7 @@ img {
   font-size: 22px;
 }
 .well{
-  background-color: #E9D6A7;
+  background: linear-gradient(#E9D6A7, #B9A476);
 }
 .check-box{
   width: 15px;
@@ -103,4 +103,19 @@ textarea{
 }
 .recipe{
   margin-top: 20px;
+}
+.navbar{
+
+  background-color: #B9A476;
+}
+.head{
+  color: white;
+}
+.logo-head{
+  height: 50px;
+  width: auto;
+}
+.button-logo{
+  height: 30px;
+  width: auto;
 }

@@ -68,7 +68,7 @@ class RecipeItem extends React.Component{
   render(){
     console.log(this.props);
     return(
-      <li><h2>{ this.props.recipeItem.get("title") }</h2><h4> by {this.props.recipeItem.get('author')}</h4><span className="span"><a className="recipe btn btn-primary" href={'#recipes/' + this.props.recipeItem.id +'/'}>See Recipe</a></span>
+      <li><h2>{ this.props.recipeItem.get("title") }</h2><h4> by {this.props.recipeItem.get('author')}</h4><span className="span"><a className="recipe btn btn-primary" href={'#recipes/' + this.props.recipeItem.id +'/'}><img className="button-logo"src="./images/logo9.png" /> See Recipe</a></span>
       <button className="delete btn btn-danger" onClick={()=>this.props.handleDelete(this.props.recipeItem)}>Delete Recipe</button><hr /></li>
     )
   }

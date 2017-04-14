@@ -28,18 +28,18 @@ class Headers extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-                    <a className="navbar-brand" href="#marketing/">Brand</a>
+                    <a className="navbar-brand" href="#marketing/"><img className="logo-head" src="images/logocook.png"/></a>
                 </div>
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul className="nav navbar-nav">
-                        <li className="active"><a href="#recipes/">Recipes <span className="sr-only">(current)</span></a></li>
-                        <li><a href="#recipe/add/">Add a Recipe</a></li>
-                        <li><a href="#recipe/list/">Recipe List </a></li>
+                        <li><a href="#recipes/"><h4 className="head">Recipe Display</h4> <span className="sr-only">(current)</span></a></li>
+                        <li ><a href="#recipe/add/"><h4 className="head">Add a Recipe</h4></a></li>
+                        <li><a href="#recipe/list/"><h4 className="head">Recipe List</h4></a></li>
                     </ul>
 
                     <ul className="nav navbar-nav navbar-right">
-                      <li><a href="#login/">Log In</a></li>
-                      <li><a href="#" onClick={this.logOut}>Log Out</a></li>
+                      <li><a href="#login/"><h4 className="head">Sign In</h4></a></li>
+                      <li><a href="#" onClick={this.logOut}><h4 className="head">Sign Out</h4></a></li>
                       </ul>
                 </div>
             </div>

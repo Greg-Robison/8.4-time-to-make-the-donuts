@@ -20,12 +20,12 @@ return (
 }
 function Header(props){
   return(
-    <h1 className="welcome text-center">Welcome to Greg's Recipe Managenment App</h1>
+    <h1 className="welcome text-center">Welcome to You Are The Chef</h1>
   );
 }
 function AnonHeader(props){
   return(
-    <h1 className="welcome">Please Signin To Use Greg's Recipe Managenment App</h1>
+    <h1 className="welcome">You Are The Chef</h1>
   );
 }
 module.exports = {
