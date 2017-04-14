@@ -177,9 +177,9 @@ class Headers extends React.Component {
                 ), 
                 React.createElement("div", {className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1"}, 
                     React.createElement("ul", {className: "nav navbar-nav"}, 
-                        React.createElement("li", null, React.createElement("a", {href: "#recipes/"}, React.createElement("h4", {className: "head"}, "Recipe Display"), " ", React.createElement("span", {className: "sr-only"}, "(current)"))), 
-                        React.createElement("li", null, React.createElement("a", {href: "#recipe/add/"}, React.createElement("h4", {className: "head"}, "Add a Recipe"))), 
-                        React.createElement("li", null, React.createElement("a", {href: "#recipe/list/"}, React.createElement("h4", {className: "head"}, "Recipe List")))
+                      React.createElement("li", null, React.createElement("a", {href: "#recipe/list/"}, React.createElement("h4", {className: "head"}, "Recipe List"))), 
+                      React.createElement("li", null, React.createElement("a", {href: "#recipe/add/"}, React.createElement("h4", {className: "head"}, "Add a Recipe"))), 
+                      React.createElement("li", null, React.createElement("a", {href: "#recipes/"}, React.createElement("h4", {className: "head"}, "Recipe Display"), " ", React.createElement("span", {className: "sr-only"}, "(current)")))
                     ), 
 
                     React.createElement("ul", {className: "nav navbar-nav navbar-right"}, 
